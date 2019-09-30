@@ -1,0 +1,3 @@
+<div>
+    <p *ngFor="let user of users"><a [routerLink]='["/thread", user.username]'>{{user.username}}</a></p>
+</div>

@@ -1,0 +1,9 @@
+<div>
+    <p>
+      receiver: {{receiver}}
+    </p>
+   
+    <p *ngFor="let message of messages">{{message}}</p>
+   
+    <app-post-message (messageEdited)="sendMessage($event)"></app-post-message>
+</div>

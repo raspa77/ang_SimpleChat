@@ -1,0 +1,15 @@
+<div class="jumbotron">
+    <h1>{{title}}</h1>
+    <hr class="my-4"> 
+    <ul class="nav nav-pills">
+        <li class='nav-item'><a routerLink="/home" routerLinkActive="active" class="nav-link">Home</a></li>
+        <li class='nav-item'><a routerLink="/enter" routerLinkActive="active" class="nav-link">Enter chat</a></li>
+        <li class='nav-item'><a routerLink="/online" routerLinkActive="active" class="nav-link">Online users</a></li>
+    </ul>
+    <div *ngIf='userOnline.isSessionOpen()' class="my-3">Benvenuto {{userOnline.name}}
+        <button type="button" (click)="userService.logout()">logout</button>
+    </div>
+</div>
+<div id="content" class="container">
+    <router-outlet></router-outlet>
+</div>

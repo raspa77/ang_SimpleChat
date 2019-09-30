@@ -1,0 +1,45 @@
+<div>
+    <!--  # vuol dire che è una variabile invece che una proprietà -->
+    <form #myForm='ngForm' (ngSubmit)="enterTheChat()">
+      <div class="form-group">
+        <label for="username">Inserisci il nome che vuoi usare</label>
+        <!--               [( indica collegamento bidirezionale )] -->
+        <input type="text" id='username' [(ngModel)]='model.username' #usernameControl='ngModel'
+        minlength="8" maxlength="32" required
+        name="username" class="form-control">
+        <!--                                 OR l'utente non ci è mai passato -->
+        <div *ngIf='usernameControl.touched && usernameControl.errors && (usernameControl.invalid || usernameControl.dirty)'>
+            <div *ngIf='usernameControl.errors.required' class="alert alert-danger">Devi inserire username</div>
+            <div *ngIf='usernameControl.errors.minlength' class="alert alert-danger">Almeno 8 caratteri</div>
+            <div *ngIf='usernameControl.errors.maxlength' class="alert alert-danger">Non più di 32 caratteri</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Scegli una password sicura</label>
+        <input type="password" id="password" [(ngModel)]='model.password' #passwordControl='ngModel'
+        required passwordCheck='complex'
+        name="password" class="form-control">
+        <div *ngIf='passwordControl.touched && passwordControl.errors && (passwordControl.invalid || passwordControl.dirty)'>
+                <div class="alert alert-danger">{{passwordControl.errors.passwordCheck}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="birthday">Quando sei nato?</label>
+        <input type="date" id="birthday" [(ngModel)]='model.birthday' #birthdayControl='ngModel' required name="birthday" class="form-control">
+        <div [hidden]='birthdayControl.valid || birthdayControl.pristine' class="alert alert-danger">Devi inserire data</div>
+      </div>
+      <div class="form-group">
+        <label for="firstname">Il tuo nome proprio</label>
+        <input type="text" id="firstname" [(ngModel)]="model.firstname" name="firstname" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="lastname">Il tuo cognome</label>
+        <input type="text" id="lastname" [(ngModel)]="model.lastname" name="lastname" class="form-control">
+      </div>
+      <div>
+        <button type="submit" class="btn btn-success" [disabled]='!myForm.form.valid'>Enter</button>
+      </div>
+    </form>
+</div>
+
+<p>{{model.description}}</p>
